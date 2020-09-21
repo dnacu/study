@@ -290,5 +290,4 @@ React는 `Form` 컴포넌트에게 주어진 `props`에 따라 어떤 `element t
 
 ### 출처
 
-[React Components, Elements, and Instances](https://ko.reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)  
-December 18, 2015 by Dan Abramov
+[React Components, Elements, and Instances](https://ko.reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
