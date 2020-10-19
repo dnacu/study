@@ -13,7 +13,9 @@
 
 HTTP를 효과적으로 사용하는 기술.
 
-> CSS, JavaScript, DOM, XML, XMLHttpRequest 객체 등을 활용하여 통신하는 새로운 접근법
+> CSS, JavaScript, DOM, XML, XMLHttpRequest 객체 등을 활용하여 통신하는 새로운 접근법.
+
+> 서버와의 통신에 `XMLHttpRequest`를 사용하는 것. '비동기성'이라는 강력한 특징으로 페이지를 리프레쉬 하지 않고서도 수행된다.
 
 유저는 새로운 HTML을 서버로부터 받는 방식을 벗어나 동일한 웹 페이지 내에서 데이터를 받아올 수 있게됨. 받아온 데이터를 기반으로 DOM을 조작하여 페이지 이동 없이 내부 변화만 일어나게 할 수 있음.
 
