@@ -23,7 +23,7 @@ CORS(Cross-Origin Resource Sharing)
 ### 동작 과정
 
 1. HTTP 요청 시 브라우저가 요청 헤더의 `Origin`에 출처를 담아 요청한다.
-2. 서버는 응답 헤더의 `Access-Control-Allow-Origin`에 \**해당 리소스를 접근하는 것이 허용된 출처*에 대한 정보를 담아 응답한다.
+2. 서버는 응답 헤더의 `Access-Control-Allow-Origin`에 **해당 리소스를 접근하는 것이 허용된 출처**에 대한 정보를 담아 응답한다.
 3. 브라우저는 자신이 보냈던 `Origin` 헤더값과 서버 응답의 `Access-Control-Allow-Origin` 헤더값을 비교하여 유요한 응답인지(CORS 정책에 위반되지 않는지)를 판단한다.
 
 세 가지의 시나리오에 따라 CORS의 동작 방식이 달라진다.
