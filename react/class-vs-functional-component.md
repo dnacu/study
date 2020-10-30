@@ -95,3 +95,9 @@ const FunctionalComponent = () => {
 `useEffect hook`의 두 번째 인자로 전달된 `state`들이 변할 떄 함수가 호출되며, 빈 배열로 넘기면 첫 한번만 호출된다.
 
 `callback`함수를 반환하면 component가 unmount되기 전에 해당 콜백을 실행하고, umount된다.
+
+## 동작방식의 차이
+
+> 함수형 컴포넌트는 `render` 될 때의 값들을 유지한다. 특정 `render`에 종속된 값을 가진다.
+
+그렇지 않은게 `ref`이다. 클래스 컴포넌트의 this처럼 변하지 않으며 `render`들끼리 공유할 수 있다(?).
