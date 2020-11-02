@@ -169,3 +169,64 @@ reducer 외부에서 초기 state를 계산하는 로직을 추출할 수 있도
 ### Bailing out of a dispatch
 
 state 변경을 감지하는 로직으로 `Object.is`(얕은비교, 주솟값 비교)를 사용한다. 동일한 값으로의 변경 시 자식 렌더링이나 함수실행 등을 회피한다.
+
+## useCallback
+
+```js
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
+```
+
+메모이제이션된 콜백을 반환하는 함수. 콜백의 의존성이 변경되었을 때에만 변경되므로 불필요한 렌더링을 방지할 수 있다.
+
+> `useCallback(fn, deps)`와 `useCallback(() => fn, deps)`는 서로 같다.
+
+## useMemo
+
+```js
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+메모이제이션된 값을 반환하는 함수. 모든 렌더링 시의 고비용 계산을 방지하게 할 수 있다.
+
+`useMemo`로 전달된 함수는 렌더링 중에 실행된다. 렌더링중에 하지 않는 것을 이 함수 내에서 하지 말아야 한다. sideEffect는 `useEffect`에서 실행해야지, `useMemo`에서 하는 일이 아니다.
+
+## useRef
+
+```js
+const refContainer = useRef(initialValue);
+```
+
+전달된 인자(`initialValue`)로 초기화된 변경 가능한 ref객체를 `current`프로퍼티르 반환한다. 반환된 객체는 컴포넌트의 전 라이프사이클동안 유지된다.
+
+> `useRef`는 본질적으로 `.current`프로퍼티에 변경 가능한 값을 담고 있는 **상자**와 같다.
+
+`useRef`는 내용이 변경될 때 그것을 알려주지는 않는다. `.current`프로퍼티를 변경한다고 해서 리렌더링이 발생되지는 않는다. 만약 ref가 DOM노드에 attach되거나 detach될 때 어떤 코드를 실행하고 싶다면, callback Ref를 사용해라.
+
+## useImperativeHandle
+
+```js
+useImperativeHandle(ref, createHandle, [deps]);
+```
+
+ref를 사용할 때 부모 컴포넌트에 노출되는 인스턴스 값을 customize한다. `forwardRef`와 함께 사용한다.
+
+```js
+function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    }
+  }));
+  return <input ref={inputRef} ... />;
+}
+FancyInput = forwardRef(FancyInput);
+```
+
+`<FancyInput ref={inputRef} />`를 렌더링한 부모 컴포넌트는 `inputRef.current.focus()`를 호출할 수 있다.
+
+## useLayoutEffect
+
+`useEffect`와 동일하나, **모든 DOM변경 후에 동기적으로 발생**한다. `useLayoutEffect`의 내부에 예정된 갱신은 브라우저가 화면을 그리기 이전 시점에 동기적으로 수행될 것이다.
