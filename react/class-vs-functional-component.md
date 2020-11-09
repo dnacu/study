@@ -96,6 +96,15 @@ const FunctionalComponent = () => {
 
 `callback`함수를 반환하면 component가 unmount되기 전에 해당 콜백을 실행하고, umount된다.
 
+### shouldComponentUpdate
+
+성능 최적화를 위한 메소드이다.
+
+클래스 컴포넌트의 생명주기 함수이며, 인자로 이전 상태값인 `prevProps, prevState`를 받는다.
+기본적으로 true를 반환하며, 이 함수 내에서 로직을 작성하여 특정 시점에 false를 반환하면 컴포넌트 리렌더링을 최적화할 수 있다.
+
+> 리액트 문서에서 이 생명주기함수를 리렌더를 피하는 용도로 사용하지 말고, 오로지 최적화만을 위해서 사용하라고 안내되어있다.
+
 ## 동작방식의 차이
 
 > 함수형 컴포넌트는 `render` 될 때의 값들을 유지한다. 특정 `render`에 종속된 값을 가진다.
